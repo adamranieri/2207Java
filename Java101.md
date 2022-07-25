@@ -42,3 +42,4 @@
   - Huge feature when Java came out in 1995
 - Java has an enourmous ecocsystem
   - Almost anything you write there is a Java library out there that does it
+![JDK vs JRE vs JVM](/images//jdk.png)
