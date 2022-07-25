@@ -1,0 +1,44 @@
+# Java 101
+- Java was designed with **Scalability** as the top priority
+  - Java is the language for enterprise development
+    - Teams of developers working on the same project
+    - Applications with 10,000's of lines of code
+
+## Features 
+- Strongly Typed
+  - There is no *implicit* type coercion in Java
+- Statically Typed
+  - All variables will have their data typed defined.
+  - All methods have a return type
+- High Level Language
+  - No pointers
+  - No direct memory management
+    - **Memory errors** were a HUGE proporotion of bugs in enterprise applications
+- Compiled
+  - You write human readable .java files. Your source code.
+  - A Java Compiler will can .java files and create .class versions of those files.
+    - .class files contain Java Byte Code which is for use by the machine. Not really human readable
+  - Compilation does a lot of things for you
+    - It will verify code intergrity
+      - There are no missing methods being called
+      - That any checked exceptions are being handled
+    - It will make optimatization for you   
+      - Your exact syntax does not matter for optimization purposes
+- OOP
+  - **Object Oriented Programming**
+  - A paradigm of programming
+    - A general way to structure and organize your code
+    - An approach to coding solutions
+  - 99% OOP
+    - Class and Object based coding
+  - OOP leads to scalable design patterns
+    - Factory
+    - Singleton 
+    - getters and setters
+- WORA (Write Once Run Anywhere)
+  - Any Java program can run the same on any machine that has a Java Virtual Machine
+    - *2 billion devices run Java*
+    - Android is built on top of Java
+  - Huge feature when Java came out in 1995
+- Java has an enourmous ecocsystem
+  - Almost anything you write there is a Java library out there that does it
