@@ -43,4 +43,49 @@
         - A change in the value of a non-static variable will **ONLY** be reflected in that specific object
     - Method Scope: Variables declared in a method can **ONLY** be acccessed in that method. 
         - This also includes the variables that are used are the parameters (arugments) given to the method
-    - Block Scope: 
+    - Block Scope: A variable decalred inside a bloack of code (inside of any two curly brases) is only visibvle in that block
+        - This include for-loop, if-statements, other-loops, etc
+        - Method scope is effectively a specific form of block scope
+
+## Non-access Modifiers
+- Methods are **able** to have non-access modifiers, that are not required to. You declare them in the method signature and it comes right after the access modifier. 
+    - Static: Static members belong to thge class, as opposed to the object of that class.
+        - Static methods can only call other static methods directly
+    - Other non-access modifers include final, abstract, syncronized, volatile, and transient
+        - Final is self explanitory, it is **"final"** you cant change it
+            - Variables are unable to be reassigned
+            - Classes cannot be inherited
+            - Methods cannot be overridden 
+        - Abstract is something we will talk about later when it comes to abstract classes
+
+## Return Types
+- Methods have a return type, even if you think they dont
+    - Return types define what the method "gives back" when it is called
+    - Your general return types are going to be void, primitive values, or objects
+
+## Parameters
+- Your methods **can** take parameters, but they dont have to
+    - Parameters aer the method's arugments
+- Generally your parameters are going to be some tpye of data that your are trying to manipulate or use
+    - Parameters are listed inside of the parenthesis after the methods name
+    - They can be objects or primitives, or nothing at all I guess, and the method will have access to the names that you give them
+
+## Java Object
+- An object is an instance of a class
+    - Like building a house based on a blueprint. Class = Blueprint, Object = House
+- Objects are created using the class as a bluefrint for the their **initial** state and behaviors
+
+## Constructors
+- A constructor is a special type of method that initializes objects
+- SPecifically it assigns values to an objects variables
+- Every class will have constructor (even if you dont write one)
+    - The complier will add a default "no-args" constructor for you even if you dont add one yourself
+    - **It should be noted** the moment you provide own constructor, the complier will eliminate the default no-args that it was going to make for you. So you will need to add it manually
+- Keyword **Super**
+    - Super will call the **parent constructor**
+- Keyword **this**
+    - **this** will either assign a value , or call another constuctor when used
+        - **Constructor chaining** is when you use the **this** keyowrd to call other constructors
+- The first line of **ANY** constructor must be a call to etiher "super()" or "this."
+    - If you do not have your first line do one of these things, the complier will try to add a call to super for you
+        - If the parent class does not have a no-args constructor, your code just come compile :(
