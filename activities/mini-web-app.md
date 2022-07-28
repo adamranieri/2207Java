@@ -5,7 +5,7 @@ You will build small REST web server. Each person will be responsible for buildi
 1. Make a new gradle project
 2. Add Javalin as a dependency
 3. Add GSON as a dependency
-4. Make a RESTful api that supports the 4 crud operations
+4. Make a RESTful api that supports the getting and posting the resource
    1. You can choose the resource
       1. Doctors
       2. Accountants
