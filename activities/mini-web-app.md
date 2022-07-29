@@ -8,7 +8,7 @@ You will build small REST web server. Each person will be responsible for buildi
 4. Make a RESTful api that supports the follwing routes
    1. GET /resources
    2. GET /resources/id
-   3. POST /resources/id
+   3. POST /resources
 5. You can choose the resource
       1. Doctors
       2. Accountants
