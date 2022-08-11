@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Counter</title>
+</head>
+<body>
+
+    <p id="counter">0</p>
+    <button data-operation="add" data-amount="1">Add 1</button>
+    <button data-operation="subtract" data-amount="1">subtract 1</button>
+    <button data-operation="add" data-amount="10">Add 10</button>
+    <button data-operation="subtract" data-amount="10">subtract 10</button>
+    <button data-operation="subtract" data-amount="100">subtract 10</button>
+    
+</body>
+<script>
+    // event delegation is good for when you have A LOT of elements and it might be impratical or impossible indivually attach and event listener
+    const counterPara = document.getElementById("counter");
+
+    let count = 0;
+
+    document.addEventListener("click", function(event){
+        // event object has tons of properties but target gets you the element that the event cam from
+        // data attributes do not do anything in HTML. They were added as an easy way to read information for js
+        const element = event.target;
+        const operation = element.dataset.operation;
+        const amount = Number(element.dataset.amount);
+
+        if(operation === "add"){
+            count += amount;
+        }
+        if(operation === "subtract"){
+            count -= amount;
+        }
+
+        counterPara.innerText = count;
+    });
+
+</script>
+</html>

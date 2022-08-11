@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+
+    <h3>Grocery List</h3>
+
+    <input type="text" id="groceryInput">
+    <button id="addGroceryBtn">Add Grocery</button>
+
+    <h5>Groceries</h5>
+    <ol id="groceryList">
+
+    </ol>
+    
+</body>
+<script>
+
+    const groceryInput = document.getElementById("groceryInput");
+    const addGroceryBtn = document.getElementById("addGroceryBtn");
+    const groceryList = document.getElementById("groceryList");
+
+    // A variable that holds groceries
+    // any variable declared within the top level of a script tag is global
+    const groceries = [];
+
+    addGroceryBtn.addEventListener("click", function(event){
+        const grocery = groceryInput.value;
+
+        for(const g of groceries){
+            if(g === grocery){
+                alert('Grocery of that type already added');
+                return;
+            }
+        }
+
+        groceries.push(grocery);
+        
+        //safer more manual approach
+        const li = document.createElement("li");
+        li.innerText = grocery;
+        groceryList.appendChild(li);
+        console.log(groceries)
+
+        // innerHTML
+        // groceryList.innerHTML = groceryList.innerHTML + `<li> ${grocery} </li>`;
+    });
+
+
+</script>
+</html>

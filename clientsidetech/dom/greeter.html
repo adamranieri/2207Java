@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Greeter</title>
+</head>
+<body>
+    
+    <!-- All inputs elements have a value property -->
+    <input id="nameInput" type="text">
+    <button id="greetingBtn">Greet</button>
+
+    <p id="namePara"></p>
+    
+</body>
+<script>
+
+    const nameInput = document.getElementById("nameInput");
+    const greetingBtn = document.getElementById("greetingBtn");
+    const namePara = document.getElementById("namePara");
+
+    greetingBtn.addEventListener("click", function(event){
+        const name = nameInput.value; // note that you will often NOT have intellisense to help you in JS
+        //alert(`Greetings ${name} how are you!!`);
+        // namePara.innerText = `Great to see you <b>${name}</b>`;
+        namePara.innerHTML = `Great to see you <b>${name}</b>`; // innerHTML is convient and I use it a lot
+        // not great from a security perspection, Cross Site Scripting XSS
+    });
+
+
+
+</script>
+</html>

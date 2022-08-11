@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ToDos</title>
+</head>
+<body>
+    <h1>My Todos!</h1>
+
+    <input id="taskInput" type="text"/>
+    <button id="addBtn">Add Todo</button>
+
+    <h3>Pending</h3>
+    <ul id="pendingList">
+        
+    </ul>
+
+    <h3>Completed</h3>
+    <ul id="completedList">
+
+    </ul>
+    
+</body>
+<script>
+    const taskInput = document.getElementById("taskInput");
+    const addBtn = document.getElementById("addBtn");
+    const pendingList = document.getElementById("pendingList");
+    const completedList = document.getElementById("completedList");
+
+    // todos are stateful and I want a variable to track them
+    const todos = [];
+
+    addBtn.addEventListener("click", function(event){
+        const task = taskInput.value;
+        const todo = {chore:task, isCompleted:false};
+        todos.push(todo);
+        console.log(todos);
+
+        const li = document.createElement("li");
+        li.innerText = todo.chore;
+        li.id = todo.chore;
+        pendingList.appendChild(li);
+
+        const completeBtn = document.createElement("button");
+        completeBtn.innerText ="Mark Complete";
+        completeBtn.dataset.chore = todo.chore;
+        li.appendChild(completeBtn);
+    });
+
+    // event delagation
+    document.addEventListener("click", function(event){
+
+        if(event.target.dataset.chore){
+            // check to see if the target has a chore data
+            const chore = event.target.dataset.chore;
+
+            // go through tods and update the correct one to complete
+            for(const t of todos){
+                if(t.chore === chore){
+                    t.isCompleted = true;
+                }
+            } 
+            
+            const elementToRemove = document.getElementById(chore);
+            elementToRemove.remove();
+
+            const li = document.createElement("li");
+            li.innerText = chore;
+            completedList.appendChild(li);       
+        }
+
+    });
+
+
+</script>
+</html>
