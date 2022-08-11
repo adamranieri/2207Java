@@ -26,3 +26,9 @@
   - 4th pillar
   - Assembly level code that is now supported in browsers
 
+## Static Website Hosting
+- Websites are just html/css/js files
+  - Traditionally a webserver running on a computer would return an html file when you went to a specific route
+    - /home => html file
+- Cloud Services allow you to publicly host files
+  - Allows you to easily host websites
