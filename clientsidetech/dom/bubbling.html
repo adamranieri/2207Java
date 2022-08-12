@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Bubbling vs Capturing</title>
+</head>
+<body>
+
+    <p id="outer">Outer <b id="inner">Inner</b></p>
+    
+</body>
+<script>
+
+    const outer = document.getElementById("outer");
+    const inner = document.getElementById("inner");
+
+    // sometimes an event might get heard by two or more event listeners
+    // clicking on inner is also a click on the outer element
+    // the default behavior for order of listener execution is bublling
+    // the event bubbles from the innermost element out
+    // capturing is when the listeners execute for outermost in
+    // the optional 3rd parameter is a boolean of if to do capturing or not
+    // defaults to false
+
+    outer.addEventListener("click", function(event){
+        console.log("outer");
+        
+    });
+
+    inner.addEventListener("click",function(event){
+        console.log("inner");
+        event.stopPropagation();// this will prevent the event from being handled anywhere else
+    });
+
+</script>
+</html>

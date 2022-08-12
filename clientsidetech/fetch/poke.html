@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Pokedex</title>
+</head>
+<body>
+    <h1>Pokemon</h1>
+
+    <input id="nameInput" type="text">
+    <button id="getPokemonBtn">Get That pokemon</button>
+
+    <dl>
+        <dt>Poke Name</dt>
+            <dd id="pokeName">None</dd>
+
+        <dt>Height</dt>
+            <dd id="pokeHeight">None</dd>
+
+        <dt>Weight</dt>
+            <dd id="pokeWeight">None</dd>
+    </dl>
+
+    <img id="pokeImage" src="" alt="some pokemon">
+    
+</body>
+<script>
+    const getPokemonBtn = document.getElementById("getPokemonBtn");
+    const pokeName = document.getElementById("pokeName");
+    const pokeHeight = document.getElementById("pokeHeight");
+    const pokeWeight = document.getElementById("pokeWeight");
+    const nameInput = document.getElementById("nameInput");
+    const pokeImage = document.getElementById("pokeImage");
+
+    // if I put async in front of a function
+    // I can then await promises in the function which will instruct JS to stop executing the code in the function Until that promise has a value
+    getPokemonBtn.addEventListener("click", async function(event){
+
+        // fetch api returns a PROMISE object containing an HTTP response
+        // a promise is like an empty object that will evetntually have a value you could use
+
+        // HTTP responses come back in two parts
+        // 1. the headers and status code are recieved
+        // 2. the body of the response of the response is downloaded
+        const nameSearch = nameInput.value;
+        const httpResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${nameSearch}`);
+        const body = await httpResponse.json();// will automatically parse the body into a JavaScript Object for you
+
+        console.log(body)
+
+        // const name = body.name;
+        // const height = body.height;
+        // const weight = body.weight;
+        // Object Deconstructions are a succint alternate syntax
+        const {name,height,weight} = body;// it will automatially pull those three properties from the object and store them in three const variables
+
+
+        const imgSrc = body.sprites.front_default;
+
+        pokeName.innerText = name;
+        pokeHeight.innerText = height;
+        pokeWeight.innerText = weight;
+        pokeImage.src = imgSrc;
+
+    });
+
+</script>
+</html>
