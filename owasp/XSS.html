@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>XSS Blog</title>
+</head>
+<body>
+    <img height='200px' width='300px'
+     src='https://upload.wikimedia.org/wikipedia/en/thumb/7/74/Florida_Gators_football_logo.svg/1200px-Florida_Gators_football_logo.svg.png'
+    alt='gator'
+    onerror='alert(`Image failed to load`)'
+
+    />
+
+    <h1 id="welcomeHeading">Welocome</h1>
+    <button id="getUsernameBtn"> Get username</button>
+    
+    
+</body>
+<script>
+
+    const welcomeHeading = document.getElementById("welcomeHeading");
+    const getUsernameBtn = document.getElementById("getUsernameBtn");
+
+    async function getInjected(){
+        const httpResponse = await fetch("http://d6d4-2603-301f-1625-c000-ede3-8275-d0c3-fe31.ngrok.io/xss"); //imagine this endpoit was supposed to send back a username
+        const body = await httpResponse.text();
+        welcomeHeading.innerHTML = body;    
+    }
+
+    getUsernameBtn.addEventListener("click", event =>{
+        getInjected()
+    })
+
+</script>
+</html>
