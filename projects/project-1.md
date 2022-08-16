@@ -87,3 +87,43 @@ You will demo the application in front of the batch. Patrick and Adam will be do
 - Logging 
 - Backend built using Javalin
 - Front-end using HTML/CSS/JS
+
+```sql
+
+-- if you ever find yourself writing 2 tables that have very similar columns but refer to different types of people
+-- you most likely want to have 1 table with a column denoting the role
+
+
+create table app_user(
+	user_id serial primary key,
+	username varchar(40),
+	password varchar(40),
+	role varchar(30)
+);
+
+create table meeting(
+	meeting_id serial primary key,
+	address varchar(200),
+	time int, -- use unix epoch time 
+	summary varchar(200)
+);
+
+create table complaint(
+	complaint_id serial primary key,
+	description varchar(200),
+	status varchar(40),
+	meeting_id int references meeting(meeting_id) default -1
+);
+
+
+insert into meeting values(-1,'NO MEETING ASSIGNED', 0, 'NOT A REAL MEETING');
+
+
+insert into app_user values (default, 'adamGator','pass123','COUNCIL');
+insert into app_user values (default, 'patrick99', 'pat1','CONSTITUENT' );
+
+insert into complaint values (default,'super villain blocking trash pick up', 'UNREVIEWED', null); -- works and accurately models the data
+-- whenever I see a null value in my code I assume something went wrong
+insert into complaint values (default,'Shadow monsters are rummaging in my backyard', 'UNREVIEWED');
+
+```
