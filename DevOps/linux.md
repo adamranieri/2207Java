@@ -1,0 +1,36 @@
+# Linux
+- An operating system for computers
+  - OS a program that runs and manages other programns
+    - Widows 
+    - iOS
+    - Andriod
+  - OS's serve as a mediator between applications running on the computer and the actual hardware resources on the computer
+    - An OS will give ram or processing time for programs as needed
+- Back in the mainframe era one computer would be used by many people
+  - Scientists and programmers had files and programs they wanted to run seperate of other users
+- **Unix**
+  - Was the first OS that was very popular
+    - AT&T developed it
+    - The cripping flaw of UNIX was that it was ***NOT FREE***
+      - A license was expensive
+      - Came with a lot of restrictions
+- **Linus Torvalds**
+  - He developed an open source free version of Unix named **Linux**
+  - He also invented Git
+- The orignial version he wrote is Debian
+  - There are dozens of different flavors of linux 
+    - A lot of custom versions for specific things
+    - *Ubuntu* is very popular and we are using that one
+
+## Linux basics
+- Most versions of linux lack any GUI
+  - Everything is command line
+  - No visual representations of folders or icons
+  - GUIs have made you weak
+- Linux very light weight and minimal
+  - The OS itself takes up less resources
+  - You could run more programs or programs more efficiently with the same hardware
+  - Great for web servers
+- Linux has tremendous developer support
+  - Library for everything
+  - Linux distros have in-built package managers for installing software
