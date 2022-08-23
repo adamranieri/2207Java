@@ -1,0 +1,10 @@
+{
+
+    "compilerOptions": {
+        "strictNullChecks": true,
+        "outDir": "build",
+        "target": "ES6"
+    }
+
+
+}
