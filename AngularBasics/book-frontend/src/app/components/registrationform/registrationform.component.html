@@ -1,0 +1,20 @@
+
+<h3>Register a book!</h3>
+
+<form>
+    <fieldset>
+        <legend>Register A book</legend>
+
+        <label for="title">Title</label>
+        <input name="title" type="text" placeholder="Frankenstein" [(ngModel)] = "title">
+
+        <label for="author">Author</label>
+        <input name="author" type="text" placeholder="Mary Shelley" [(ngModel)] = "author">
+
+    </fieldset>
+
+    <button (click)="register()">Register</button>
+
+    <h4 *ngIf="savedId !==0">Book was saved with id {{savedId}}</h4>
+
+</form>
