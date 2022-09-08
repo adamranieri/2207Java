@@ -17,9 +17,8 @@ Your application will be a **Micro-Services** Application. This is when a single
     - This Service is a REST API for managing students and grades
     - When a student is added or deleted a message is sent to the *Important Event Queue* with the name of the student added or deleted
 - **Important-Event Service**
-  - This service will read messages from the *Imporant Event Queue*
-    - It will save these events to a 3rd database of your choosing
-      - SQL or NoSQL
+  - This service would read messages from the *Imporant Event Queue* and save them to a database
+    - Not required to build because it is not free tier on Azure
   - This service has no front-end functionality and is for auditing purposes 
 
 
