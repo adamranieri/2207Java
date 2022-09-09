@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+</head>
+<body>
+
+    <label for="">Username</label>
+    <input id="usernameInput" type="text" placeholder="adamGator">
+
+    <label for="">Password</label>
+    <input id="passwordInput" type="password">
+
+    <button id="loginBtn">Login</button>
+
+    <button id="allEmployeesBtn">Get All employees</button>
+    
+</body>
+<script>
+
+    const usernameInput = document.getElementById("usernameInput");
+    const passwordInput = document.getElementById("passwordInput");
+    const loginBtn = document.getElementById("loginBtn");
+    const allEmployeesBtn = document.getElementById("allEmployeesBtn");
+
+    loginBtn.addEventListener("click", async function(event){
+        const credentials = {username:usernameInput.value, password:passwordInput.value};
+        const response = await fetch("http://localhost:8080/login",{
+            method:"POST", 
+            body:JSON.stringify(credentials), 
+            headers:{
+            "Content-Type":"application/json"
+        }})
+
+        const jwt = await response.text();
+        localStorage.setItem("userInfo",jwt)
+        alert("Successful Log in!")
+    });
+
+
+    allEmployeesBtn.addEventListener("click", async function(event){
+
+        const response = await fetch("http://localhost:8080/employees", {headers:{
+            "auth":localStorage.getItem("userInfo")
+        }})
+
+        if(response.status === 200){
+            const body = await response.json();
+            console.log(body)
+        }
+
+        if(response.status === 401){
+            alert("NOT LOGGED IN")
+        }
+
+        if(response.status === 403){
+            alert("Insufficient Permission")
+        }
+
+    });
+    
+
+
+
+</script>
+</html>

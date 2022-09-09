@@ -1,0 +1,227 @@
+# Week 7 Review
+
+## Microservices
+- Distributed ecosystem of software applications
+- These are standalone software applications that can communicate with each other
+- Each application is small and in charge of one particular service or feature
+  - AuthenticationService
+  - REST API
+  - Employee Work Log Service
+- Microservices 
+  - Pros
+    - Code base for a single micro service is fairly small
+      - easy to edit and exapnd on
+    - Becuase Microservices communicate with HTTP you could write each microservice in a different language
+    - Microservices are very scalable
+      - You can scale per individual service in the application
+  - Cons
+    - Microservices are a lot more difficult to coordinate and set up
+    - Increased latency from all the HTTP requests
+      - *latency* is how long it takes to get a a HTTP reponse from an HTTP Request
+- Monolith
+  - The entire web app is on a single backend
+  - Pros
+    - No latency
+    - Much easier to set and deploy
+  - Cons
+    - Do not scale quite as well
+    - You are locked in the to the programming language and or framework
+    - Not as easy to add new feautres when you have a large code base
+
+### Communicate between microservices
+- **Discovery Problem**
+  - How do you find the URL of the microservice you are trying to make an HTTP request to
+    - Registries
+      - A microservice will put their URL on a a shared address book
+  - Cloud Resources have ephemeral IP addresses
+    - You often only have a an IP address when the VM is up and running
+- **HTTP Request**
+  - Directly make HTTP request
+    - **RestTemplate**
+      - Spring Class for making http request
+- **Messaging Queues**
+  - A **producer** applicaiton sends a message to a queue
+  - A **Consumer** application polls messages from a queue
+  - pros
+    - Very cheap
+    - millions of messages are no problem
+    - very reliable (never lose a message)
+  - cons
+    - Not very fast
+      - delays of several minutes is not uncommon
+    - There is no request response
+      - You send it and expect nothing back
+![Messaging Queue](https://www.cloudamqp.com/img/blog/thumb-mq.jpg)
+- **Pub Sub**
+  - More advanced version of a a messaging queue
+  - **Publishers**
+    - Publish messages to a **Topic**
+  - **Subscribers**
+    - Read messages from a topic
+![Pub Sub](https://cloud.google.com/static/pubsub/images/wp_flow.svg)
+ - The main difference is that a topic could have many different subscribers that each handle the message
+
+## Databases and Data Theory
+- **Database**
+  - Anything that stores data in a persistent physical way
+    - magentic tap
+    - hard disk
+    - clay tablet
+
+### Type of Databases
+- **Relational/SQL**
+  - Data is stored in a tables
+  - The tables have well defined schemas
+    - Constraints that cannot be violated
+  - Tables have foreign keys that allow them to reference each other
+  - Data is usualy very normalized
+    - minimal redundancy
+  - Database works in transactions
+    - Discrete units of SQL statements that either all work or not at all
+    - **ACID**
+- **NoSQL**
+  -  A database that is *anything other* than a traditional relation database
+  -  **MongoDB**
+     -  Really popular NoSQL database
+     -  MongoDB Atlas is a cloud service provided by the MongoDB company
+        -  Allows a quick way to use a pre configured hosted MongoDB Server
+     -  **Cluster**
+        -  The actual server your MongoDB runs on
+     -  **Database**
+        -  The namespace for bunch of collections
+     -  **Collections**
+        -  a namespace for a group of documents
+     -  **Document**
+        -  a *record* in a collection
+        -  In a JSON format
+        -  They have no constraints or schema *typically*
+  -  General trends among NoSQL databases
+     - Schemaless
+        -  Very malleable and editable
+     - Do not have a high emphasis on normalization
+       - Records routinely contain a lot of redundant data
+         - Helpful for databases that recieve a lot more reads than writes
+         - There are no joins that must be perforemd to get the information
+     - Data is often stored as a JSON
+     - Nesting Data is very common in no SQL databases
+       - An object embedded in another object
+       - Arrays within a document
+- **OLAP**
+  - Online Analytical Processing
+    - Denormalized historical data
+    - Mostly used for businsess analysis
+    - Data is not expected to change
+  - example
+    - A database that holds all the girl scout cookie sales for the past 10 years
+    - **Star Schema** or design to hold the data for easy queries
+- **OLTP**
+  - Online Transactional Processing
+    - Normalized Databases used by active applicaiton
+    - Data is expected to be added/edited frequently
+  - Emphasis is on speedy transactions
+  - Example
+    - Amzaon order processing
+    - Dominos registration and user database
+![OLTP vs OLAP](https://miro.medium.com/max/875/1*kDxyqz9MqDuFb5AyYu53AA.png)
+
+
+## Data Terminology
+- **Data**
+  - Anything that can be quantified, measured, and stored
+  - any format
+    - txt
+    - db record
+    - jpeg
+- **Business Intelligence**
+  - Meaningful insight gleaned from the data
+  - An excel sheet with all cookie sales is data
+    - Realizing that thin mints are the best selling cookie is Intelligence
+- ***Data Quality***
+  - **Consistent**
+    - Data does not contradict itself
+      - Counter Example
+        - A temperature reading 5 minutes apart has a 60 degree swing
+  - **Relavent**
+    - Data actually contains useful information
+      - Counter Example
+        - Census data from 60 years ago for your modern day analysis
+  - **Complete**
+    - Data does not have gaps
+      - Counter Emample
+        - Video tape that has large chunks of time where is corrupted
+        - Logging data and an hour is not accounted for
+  - **Accurate**
+    - Data actually reflects the real world
+      - Counter Example
+        - A survey that everyone lied on
+  - **Granularity**
+    - How specifc the data is
+      - Usually in respect to time a lot
+    - Cookies sold each week
+      - less Dranular data
+    - Cookies solder per day
+      - More Granular data
+- Data Structure
+  - **Highly Structured**
+    - Data stored in a a very programming and analysis friendly format
+      - Relational database
+        - Well defined schema and constraints
+  - **Semi-Structured**
+    - Data that can somewhat be programatically analyzed
+      - PDF files
+      - Emails
+      - JSON
+  - **Unstructured**
+    - Data in a format difficult to programmatically use and analyze
+      - Images and Videos
+        - The data in it could be great but to programatically use it is difficult
+- High Quality but Unstrucutred
+  - High definition video of all the people who entered a building
+- Low Quaility But Highly Strutured
+  - Online form that patients should submit
+    - most patients do not do it
+    - a lot of patients lie
+- **Metadata**
+  - Data about your data
+    - Examples
+      - This database contains 2,134 entries
+      - The email was sent at 9:55pm EST
+      - The suvey was conducted outside of Kroger on University Avenue
+
+## Datawarehouses and ETL
+- Most business enterprises end up with Terabytes/Petabytes of data
+  - Been collecting data for 30-40 years from aroud the globe
+  - Have dozesns of web applications that they manage
+- **Datawarehouse**
+  - A place to funnel all your data to make managing it easier
+    - Data comes from many different sources
+    - Other databases
+    - pdf files and excel speadsheets
+![Data Warehouse](https://www.databricks.com/wp-content/uploads/2019/02/datawarehouse-1.jpg)
+- **ETL**
+  - Extract Transform Load process to put the data into the data warehouse
+  - **Extract**
+    - Pull the data from the original data source
+  - **Transform**
+    - edit the data into a universal foramt for your own usage
+      - Turning string dates into epoch time
+      - Cleaning up fields
+        - One database might have just a single column name that you split
+    - Data could be in an unstrucutred or semi strucutred format
+      - This can be very difficult
+  - **Load**
+    - Putting the transformed data into the data warehouse
+- **Data Marts**
+![Data Marts](https://panoply.io/uploads/versions/diagram8-1---x----750-376x---.jpg)
+- Databases that are designed for a single purpose
+  - These are read only databases typically
+  - Example
+    - A customized databases with information about cookie sales for the marketing team
+  - Designed to be REALLY easy to query 
+    - Easy to gain Business Intelligence from the data
+- Data marts usually have a star schema
+![Star Schema](https://media.geeksforgeeks.org/wp-content/uploads/Untitled-drawing-3-2.png)
+- You have a central **Fact table**
+  - A fact is a record in the fact table
+- You have branching **Dimension tables**
+  - Provide context for a fact
